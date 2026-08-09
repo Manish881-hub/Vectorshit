@@ -44,17 +44,20 @@ export const PipelineUI = () => {
     const onDrop = useCallback(
         (event) => {
           event.preventDefault();
-    
-          const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
+
+          const reactFlowBounds = reactFlowWrapper.current?.getBoundingClientRect();
+          if (!reactFlowBounds || !reactFlowInstance) {
+            return;
+          }
           if (event?.dataTransfer?.getData('application/reactflow')) {
             const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
             const type = appData?.nodeType;
-      
+
             // check if the dropped element is valid
             if (typeof type === 'undefined' || !type) {
               return;
             }
-      
+
             const position = reactFlowInstance.project({
               x: event.clientX - reactFlowBounds.left,
               y: event.clientY - reactFlowBounds.top,
@@ -67,7 +70,7 @@ export const PipelineUI = () => {
               position,
               data: getInitNodeData(nodeID, type),
             };
-      
+
             addNode(newNode);
           }
         },
@@ -77,6 +80,10 @@ export const PipelineUI = () => {
     const onDragOver = useCallback((event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
+    }, []);
+
+    const onNodesDelete = useCallback((deleted) => {
+      useStore.getState().removeEdgesConnectedTo(new Set(deleted.map((node) => node.id)));
     }, []);
 
     return (
@@ -89,6 +96,7 @@ export const PipelineUI = () => {
                 onConnect={onConnect}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
+                onNodesDelete={onNodesDelete}
                 onInit={setReactFlowInstance}
                 nodeTypes={nodeTypes}
                 proOptions={proOptions}

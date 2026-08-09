@@ -50,4 +50,26 @@ export const useStore = create((set, get) => ({
         }),
       });
     },
+    removeEdgesConnectedTo: (nodeIds) => {
+      set({
+        edges: get().edges.filter(
+          (edge) => !nodeIds.has(edge.source) && !nodeIds.has(edge.target)
+        ),
+      });
+    },
+    pruneEdges: (nodeId, validHandleIds) => {
+      set({
+        edges: get().edges.filter((edge) => {
+          const sourceOk =
+            !edge.sourceHandle ||
+            !edge.sourceHandle.startsWith(`${nodeId}-`) ||
+            validHandleIds.includes(edge.sourceHandle.slice(nodeId.length + 1));
+          const targetOk =
+            !edge.targetHandle ||
+            !edge.targetHandle.startsWith(`${nodeId}-`) ||
+            validHandleIds.includes(edge.targetHandle.slice(nodeId.length + 1));
+          return sourceOk && targetOk;
+        }),
+      });
+    },
   }));
