@@ -276,7 +276,7 @@ code {
   min-width: 0;
 }
 
-.vs-node-body > .vs-field:last-child {
+.vs-node-body > .vs-field.vs-field-textarea {
   flex: 1;
 }
 
@@ -310,7 +310,8 @@ code {
   color: #4d5668;
 }
 
-.vs-node-body > .vs-field:last-child textarea {
+.vs-node-body > .vs-field.vs-field-textarea textarea {
+  height: 100%;
   min-height: 42px;
   resize: vertical;
 }
@@ -336,16 +337,6 @@ code {
 
 .vs-node .react-flow__handle-connecting {
   background: var(--text);
-}
-
-.vs-node .react-flow__handle-left,
-.vs-node .react-flow__handle-top {
-  left: -3px;
-}
-
-.vs-node .react-flow__handle-right,
-.vs-node .react-flow__handle-bottom {
-  right: -3px;
 }
 
 /* handle labels */
@@ -377,7 +368,7 @@ code {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  max-height: 30px;
+  max-height: 52px;
   overflow: hidden;
 }
 

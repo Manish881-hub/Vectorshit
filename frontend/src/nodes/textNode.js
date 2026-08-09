@@ -46,9 +46,10 @@ export const textConfig = {
     const lines = text.split('\n');
     const longestLine = Math.max(1, ...lines.map((line) => line.length));
     const variableCount = extractVariables(text).length;
+    const varSpace = variableCount === 0 ? 0 : variableCount > 3 ? 52 : 26;
     return {
       width: Math.min(460, Math.max(240, longestLine * 7.8 + 56)),
-      height: Math.min(340, Math.max(120, lines.length * 21 + 70 + (variableCount > 0 ? 34 : 0))),
+      height: Math.min(380, Math.max(130, 130 + varSpace + Math.max(0, lines.length - 1) * 20)),
     };
   },
   render: ({ values }) => {
