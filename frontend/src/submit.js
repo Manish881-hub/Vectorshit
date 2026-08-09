@@ -3,7 +3,15 @@
 import { useState } from 'react';
 import { useStore } from './store';
 
-const BACKEND_URL = 'http://localhost:8000/pipelines/parse';
+const BACKEND_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const PARSE_ENDPOINT = `${BACKEND_BASE_URL}/pipelines/parse`;
+
+const toUserMessage = (error) => {
+  if (error?.name === 'TypeError' || error?.message === 'Failed to fetch') {
+    return `Cannot reach the backend at ${BACKEND_BASE_URL}. Make sure the server is running.`;
+  }
+  return error?.message || 'Something went wrong while analyzing the pipeline.';
+};
 
 export const SubmitButton = () => {
   const nodes = useStore((state) => state.nodes);
@@ -22,12 +30,20 @@ export const SubmitButton = () => {
       const formData = new FormData();
       formData.append('pipeline', pipeline);
 
-      const response = await fetch(BACKEND_URL, { method: 'POST', body: formData });
-      if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+      const response = await fetch(PARSE_ENDPOINT, { method: 'POST', body: formData });
+
+      let body = null;
+      try {
+        body = await response.json();
+      } catch {
+        body = null;
       }
 
-      const { num_nodes, num_edges, is_dag } = await response.json();
+      if (!response.ok) {
+        throw new Error(body?.detail || `Request failed with status ${response.status}`);
+      }
+
+      const { num_nodes, num_edges, is_dag } = body;
       setStatus('success');
       alert(
         `Pipeline analysis complete\n\n` +
@@ -40,7 +56,7 @@ export const SubmitButton = () => {
       );
     } catch (error) {
       setStatus('error');
-      alert(`Could not reach the backend at ${BACKEND_URL}.\n\n${error.message}`);
+      alert(`Pipeline analysis failed.\n\n${toUserMessage(error)}`);
     }
   };
 
