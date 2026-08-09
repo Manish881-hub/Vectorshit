@@ -38,6 +38,7 @@ code {
 
 .vs-app {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -69,6 +70,12 @@ code {
   color: var(--accent);
   font-size: 18px;
   line-height: 1;
+}
+
+.vs-brand-mark svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .vs-brand-name {
@@ -118,6 +125,11 @@ code {
   font-size: 18px;
 }
 
+.vs-palette-icon svg {
+  color: var(--item-accent);
+  display: block;
+}
+
 .vs-palette-text {
   display: flex;
   flex-direction: column;
@@ -150,6 +162,31 @@ code {
   width: 100%;
   flex: 1;
   background: var(--bg);
+  position: relative;
+}
+
+.vs-canvas-empty {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  color: var(--text-dim);
+}
+
+.vs-canvas-empty strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.vs-canvas-empty p {
+  margin: 0;
+  font-size: 12px;
 }
 
 .react-flow {
@@ -236,6 +273,11 @@ code {
   line-height: 1;
 }
 
+.vs-node-icon svg {
+  color: var(--accent);
+  display: block;
+}
+
 .vs-node-title {
   font-size: 13px;
   font-weight: 600;
@@ -298,12 +340,16 @@ code {
   font-size: 12px;
   padding: 6px 8px;
   outline: none;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  transition: border-color 0.12s ease;
 }
 
 .vs-field-control:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(108, 140, 255, 0.18);
+}
+
+.vs-field-control:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
 .vs-field-control::placeholder {
@@ -443,4 +489,26 @@ code {
 .vs-submit-btn:disabled {
   opacity: 0.6;
   cursor: wait;
+}
+
+.vs-submit-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ================= Empty / reduced motion ================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-palette-item,
+  .vs-submit-btn {
+    transition: none;
+  }
+
+  .vs-palette-item:hover {
+    transform: none;
+  }
+
+  .react-flow__edge.animated path {
+    animation: none;
+  }
 }
