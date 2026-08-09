@@ -107,6 +107,12 @@ export const PipelineUI = () => {
                 <Controls />
                 <MiniMap />
             </ReactFlow>
+            {nodes.length === 0 && (
+                <div className="vs-canvas-empty">
+                    <strong>Your canvas is empty</strong>
+                    <p>Drag a node from the palette above to start building your pipeline.</p>
+                </div>
+            )}
         </div>
     )
 }

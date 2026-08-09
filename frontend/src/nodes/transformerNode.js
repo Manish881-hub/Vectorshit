@@ -1,11 +1,12 @@
 // transformerNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconTransformer } from '../components/icons';
 
 export const transformerConfig = {
   type: 'transformer',
   label: 'Transformer',
-  icon: '⚡',
+  icon: IconTransformer,
   accent: 'transformer',
   width: 240,
   height: 200,

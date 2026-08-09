@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------------
 
 import { BaseNode } from './BaseNode';
+import { IconText } from '../components/icons';
 
 export const extractVariables = (text) => {
   const regex = /\{\{\s*([A-Za-z_$][\w$]*)\s*\}\}/g;
@@ -22,7 +23,7 @@ export const extractVariables = (text) => {
 export const textConfig = {
   type: 'text',
   label: 'Text',
-  icon: '📝',
+  icon: IconText,
   accent: 'text',
   fields: [
     {

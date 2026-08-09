@@ -1,11 +1,12 @@
 // inputNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconInput } from '../components/icons';
 
 export const inputConfig = {
   type: 'customInput',
   label: 'Input',
-  icon: '📥',
+  icon: IconInput,
   accent: 'input',
   width: 220,
   height: 128,

@@ -1,11 +1,12 @@
 // llmNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconLLM } from '../components/icons';
 
 export const llmConfig = {
   type: 'llm',
   label: 'LLM',
-  icon: '🧠',
+  icon: IconLLM,
   accent: 'llm',
   width: 220,
   height: 112,

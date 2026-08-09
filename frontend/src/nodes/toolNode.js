@@ -1,11 +1,12 @@
 // toolNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconTool } from '../components/icons';
 
 export const toolConfig = {
   type: 'tool',
   label: 'Tool',
-  icon: '🔧',
+  icon: IconTool,
   accent: 'tool',
   width: 240,
   height: 160,

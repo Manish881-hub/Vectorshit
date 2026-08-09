@@ -8,7 +8,7 @@
 // Config schema:
 //   {
 //     label:        'LLM',                       // header title
-//     icon:         '🧠',                         // header icon
+//     icon:         <IconComponent>,              // header icon (SVG component)
 //     accent:       'llm',                       // CSS class suffix -> accent color
 //     width/height: number,                      // static size (used unless dynamicSize)
 //     description:  'string',                    // optional body text
@@ -146,7 +146,9 @@ export const BaseNode = ({ id, data, config }) => {
       style={{ width: size.width, height: size.height }}
     >
       <div className="vs-node-header">
-        <span className="vs-node-icon">{config.icon}</span>
+        <span className="vs-node-icon">
+          {typeof config.icon === 'function' ? <config.icon /> : config.icon}
+        </span>
         <span className="vs-node-title">{config.label}</span>
         <span className="vs-node-type">{config.type}</span>
       </div>

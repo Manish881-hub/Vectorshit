@@ -1,11 +1,12 @@
 // outputNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconOutput } from '../components/icons';
 
 export const outputConfig = {
   type: 'customOutput',
   label: 'Output',
-  icon: '📤',
+  icon: IconOutput,
   accent: 'output',
   width: 220,
   height: 128,

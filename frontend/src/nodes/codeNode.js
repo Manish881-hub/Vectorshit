@@ -1,11 +1,12 @@
 // codeNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconCode } from '../components/icons';
 
 export const codeConfig = {
   type: 'code',
   label: 'Code',
-  icon: '⌨️',
+  icon: IconCode,
   accent: 'code',
   width: 240,
   height: 180,

@@ -49,7 +49,7 @@ export const SubmitButton = () => {
         `Pipeline analysis complete\n\n` +
           `• Nodes: ${num_nodes}\n` +
           `• Edges: ${num_edges}\n` +
-          `• Directed acyclic graph (DAG): ${is_dag ? 'Yes ✅' : 'No ❌'}\n\n` +
+          `• Directed acyclic graph (DAG): ${is_dag ? 'Yes' : 'No'}\n\n` +
           `Your pipeline ${is_dag ? 'is' : 'is NOT'} a valid DAG, so it ${
             is_dag ? 'can' : 'cannot'
           } be executed topologically.`

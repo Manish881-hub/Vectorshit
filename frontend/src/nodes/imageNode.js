@@ -1,11 +1,12 @@
 // imageNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconImage } from '../components/icons';
 
 export const imageConfig = {
   type: 'image',
   label: 'Image',
-  icon: '🖼️',
+  icon: IconImage,
   accent: 'image',
   width: 240,
   height: 170,

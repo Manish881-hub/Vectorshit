@@ -1,11 +1,12 @@
 // memoryNode.js
 
 import { BaseNode } from './BaseNode';
+import { IconMemory } from '../components/icons';
 
 export const memoryConfig = {
   type: 'memory',
   label: 'Memory',
-  icon: '🗂️',
+  icon: IconMemory,
   accent: 'memory',
   width: 220,
   height: 132,

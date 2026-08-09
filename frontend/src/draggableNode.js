@@ -15,7 +15,7 @@ export const DraggableNode = ({ type, label, icon, description }) => {
         onDragEnd={(event) => (event.currentTarget.style.cursor = 'grab')}
         draggable
       >
-        <span className="vs-palette-icon">{icon}</span>
+        <span className="vs-palette-icon">{typeof icon === 'function' ? <icon /> : icon}</span>
         <span className="vs-palette-text">
           <span className="vs-palette-label">{label}</span>
           <span className="vs-palette-desc">{description}</span>
